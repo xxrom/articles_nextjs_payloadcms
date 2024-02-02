@@ -1,4 +1,6 @@
-//import { Suspense } from "react";
+import { Article } from "@/components/Article";
+import { Skeleton } from "@/components/Skeleton";
+import { Suspense } from "react";
 
 export type ArticleProps = {
   params: {
@@ -6,13 +8,18 @@ export type ArticleProps = {
   };
 };
 
-const Article = ({ params }: ArticleProps) => {
+const ArticlePage = ({ params }: ArticleProps) => {
   return (
     <div className="flex min-h-screen flex-col items-center p-12">
-      <div>Article !</div>
-      <div>{`ID: ${params.slug}`}</div>
+      <div className="flex min-h-screen flex-col items-center p-12">
+        <div>Article</div>
+
+        <Suspense fallback={<Skeleton />}>
+          <Article id={params.slug} />
+        </Suspense>
+      </div>
     </div>
   );
 };
 
-export default Article;
+export default ArticlePage;
