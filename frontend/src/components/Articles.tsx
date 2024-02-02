@@ -1,32 +1,28 @@
-"use client";
-import { useEffect, useState } from "react";
+import { sleep } from "@/utils/sleep";
+import { Article } from "./Article";
 
-const getData = () => fetch("http://192.168.77.17:6066/api/articles/");
+export type Articles = Array<Article>;
 
-export const Articles = () => {
-  const [data, setData] = useState([]);
+export const Articles = async () => {
+  const articles: Articles = await fetch(
+    `${process.env.SERVER_URL}/api/articles/`
+  ).then((res) =>
+    sleep(2000).then(async () => {
+      const data = await res.json();
 
-  useEffect(() => {
-    const g = async () => {
-      const d = await getData().then((res) => res.json());
+      return data?.docs;
+    })
+  );
 
-      console.log("res", d);
-
-      setData(d.docs);
-    };
-
-    g();
-  }, []);
-  console.log("data", data);
+  console.log("articles", articles);
 
   return (
     <div>
-      <div>Articles</div>
-      {data?.map(({ id }) => (
-        <div>
-          <div>{id}</div>
-        </div>
-      ))}
+      <div className='flex flex-col justify-center"'>
+        <span className="w-fit p-2 bg-gray-300 rounded-md">Articles</span>
+      </div>
+
+      {articles?.map((article) => <Article key={article.id} {...article} />)}
     </div>
   );
 };

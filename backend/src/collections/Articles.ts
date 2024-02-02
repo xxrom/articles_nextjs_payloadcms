@@ -26,13 +26,13 @@ const Articles: CollectionConfig = {
   auth: false,
   fields: [
     {
-      name: "Title",
+      name: "title",
       type: "text",
       required: true,
       defaultValue: "Title",
     },
     {
-      name: "Description",
+      name: "description",
       type: "textarea",
       required: true,
       defaultValue: "Description",
@@ -48,7 +48,7 @@ const Articles: CollectionConfig = {
       },
     },
     {
-      name: "ButtonText",
+      name: "buttonText",
       type: "text",
       required: true,
       defaultValue: "Open",

@@ -1,10 +1,15 @@
 import { Articles } from "@/components/Articles";
+import { Skeleton } from "@/components/Skeleton";
+import { Suspense } from "react";
 
-export default function Home() {
+const Home = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center p-12">
-      <div>Hello</div>
-      <Articles />
-    </main>
+    <div className="flex min-h-screen flex-col items-center p-12">
+      <Suspense fallback={<Skeleton />}>
+        <Articles />
+      </Suspense>
+    </div>
   );
-}
+};
+
+export default Home;
