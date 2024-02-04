@@ -2,20 +2,7 @@ import { CollectionConfig } from "payload/types";
 
 const DESCRIPTION_MAX_SIZE = 1024;
 
-const Articles: CollectionConfig = {
-  slug: "articles",
-  admin: {
-    useAsTitle: "Title",
-    preview: (doc) => {
-      console.log("doc", doc);
-
-      if (doc?.id) {
-        return `/api/articles/${doc.id}`;
-      }
-
-      return null;
-    },
-  },
+export const accessEveryone = {
   access: {
     create: () => true,
     read: () => true,
@@ -23,7 +10,15 @@ const Articles: CollectionConfig = {
     delete: () => true,
     admin: () => true,
   },
+};
+
+const Articles: CollectionConfig = {
+  slug: "articles",
   auth: false,
+  admin: {
+    useAsTitle: "title",
+  },
+  ...accessEveryone,
   fields: [
     {
       name: "title",
@@ -52,6 +47,11 @@ const Articles: CollectionConfig = {
       type: "text",
       required: true,
       defaultValue: "Open",
+    },
+    {
+      name: "image",
+      type: "upload",
+      relationTo: "media",
     },
   ],
 };

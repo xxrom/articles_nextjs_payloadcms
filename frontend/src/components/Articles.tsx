@@ -1,22 +1,13 @@
-import { sleep } from "@/utils/sleep";
 import { Article } from "./Article";
 import { Suspense } from "react";
 import { Skeleton } from "./Skeleton";
 
 export type Articles = Array<Article>;
+export type ArticlesProps = {
+  articles: Articles;
+};
 
-export const Articles = async () => {
-  const articles: Articles = await fetch(
-    `${process.env.SERVER_URL}/api/articles/`,
-    { cache: "no-store" }
-  ).then((res) =>
-    sleep(2000).then(async () => {
-      const data = await res.json();
-
-      return data?.docs;
-    })
-  );
-
+export const Articles = async ({ articles }: ArticlesProps) => {
   return (
     <div>
       <div className='flex flex-col justify-center"'>
