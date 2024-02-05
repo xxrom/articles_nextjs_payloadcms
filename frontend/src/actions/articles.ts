@@ -2,7 +2,6 @@
 
 import { Articles } from "@/components/Articles";
 import { REQUEST_LIMIT } from "@/utils/constants";
-import { sleep } from "@/utils/sleep";
 
 export const fetchArticles = async (
   page = 1,
@@ -16,10 +15,8 @@ export const fetchArticles = async (
         tags: ["articles"],
       },
     }
-  ).then((res) =>
-    sleep(500).then(async () => {
-      const data = await res.json();
+  ).then(async (res) => {
+    const data = await res.json();
 
-      return data?.docs;
-    })
-  );
+    return data?.docs;
+  });

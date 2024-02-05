@@ -44,9 +44,9 @@ export const Article = memo(async (props: ArticleProps) => {
             <Image
               src={`${process.env.NEXT_PUBLIC_SERVER_URL}${image?.url}`}
               alt={image?.alt || "image"}
-              sizes="(max-width: 500px) 50vw, (max-width: 768px) 30vw, (max-width: 1200px) 50vw, 20vw"
+              sizes="(max-width: 500px) 80vw, (max-width: 768px) 30vw, (max-width: 1200px) 40vw, 20vw"
               quality={60}
-              loading="lazy"
+              loading="eager"
               fill
               style={{
                 objectFit: "cover",

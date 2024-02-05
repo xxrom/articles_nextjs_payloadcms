@@ -29,13 +29,11 @@ export const Articles = memo(({ articles }: ArticlesProps) => {
         {
           cache: "no-store",
         }
-      ).then((res) =>
-        sleep(2000).then(async () => {
-          const data = await res.json();
+      ).then(async (res) => {
+        const data = await res.json();
 
-          return data?.docs;
-        })
-      );
+        return data?.docs;
+      });
 
       setAllArticles((state) => [...state, ...newArticles]);
       setPage(page + 1);

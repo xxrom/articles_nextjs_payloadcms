@@ -1,7 +1,6 @@
 "use server";
 
 import type { Comments } from "@/components/Comments";
-import { sleep } from "@/utils/sleep";
 import qs from "qs";
 
 export const fetchComments = async (articleId: string): Promise<Comments> => {
@@ -24,15 +23,13 @@ export const fetchComments = async (articleId: string): Promise<Comments> => {
         tags: ["comments"],
       },
     }
-  ).then((res) =>
-    sleep(500).then(async () => {
-      try {
-        const data = await res?.json();
+  ).then(async (res) => {
+    try {
+      const data = await res?.json();
 
-        return data?.docs[0]?.comments;
-      } catch (e) {
-        return [];
-      }
-    })
-  );
+      return data?.docs[0]?.comments;
+    } catch (e) {
+      return [];
+    }
+  });
 };
