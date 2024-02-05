@@ -3,7 +3,7 @@
 import { sleep } from "@/utils/sleep";
 
 export const fetchArticle = async (id: string) =>
-  fetch(`${process.env.SERVER_URL}/api/articles/${id}`, {
+  fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/articles/${id}`, {
     cache: "no-store",
     next: {
       tags: ["article"],

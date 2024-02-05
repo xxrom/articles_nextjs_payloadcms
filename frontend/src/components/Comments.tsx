@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { CommentInput } from "./CommentInput";
 
 export type Comment = {
@@ -11,7 +12,7 @@ export type CommentsProps = {
   comments: Comments;
 };
 
-export const Comments = async ({ articleId, comments }: CommentsProps) => {
+export const Comments = memo(async ({ articleId, comments }: CommentsProps) => {
   return (
     <div className="flex flex-col w-full mt-4">
       <div className='flex flex-col justify-center"'>
@@ -22,7 +23,7 @@ export const Comments = async ({ articleId, comments }: CommentsProps) => {
 
       {comments?.map((comment, index) => (
         <div key={comment.id} className="p-2 mt-2 bg-gray-100 rounded-md">
-          <div>{`Comment: №${index}`}</div>
+          <div>{`Comment: №${index + 1}`}</div>
           <div>{comment.content}</div>
         </div>
       ))}
@@ -30,4 +31,4 @@ export const Comments = async ({ articleId, comments }: CommentsProps) => {
       <CommentInput articleId={articleId} />
     </div>
   );
-};
+});

@@ -14,7 +14,7 @@ export const addCommentAction = async (
   };
 
   // mutate data
-  await fetch(`${process.env.SERVER_URL}/api/commentsList/append`, {
+  await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/commentsList/append`, {
     method: "POST",
     credentials: "include",
     headers: {

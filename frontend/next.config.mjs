@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    deviceSizes: [500, 768, 1200, 1920],
+    minimumCacheTTL: 3600,
     remotePatterns: [
       {
         protocol: "http",
@@ -9,6 +11,9 @@ const nextConfig = {
         pathname: "/media/**",
       },
     ],
+  },
+  env: {
+    SERVER_URL: process.env.SERVER_URL,
   },
 };
 

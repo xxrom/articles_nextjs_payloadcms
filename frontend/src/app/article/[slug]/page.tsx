@@ -4,6 +4,7 @@ import { Comments } from "@/components/Comments";
 import { Suspense } from "react";
 import { fetchArticle } from "@/actions/article";
 import { fetchComments } from "@/actions/comments";
+import Link from "next/link";
 
 export type ArticleProps = {
   params: {
@@ -17,7 +18,11 @@ const ArticlePage = async ({ params }: ArticleProps) => {
 
   return (
     <div className="flex min-h-screen flex-col items-center p-12">
-      <div className="flex min-h-screen flex-col items-center p-12">
+      <Link href={`/`} className="text-white">
+        Back to Articles
+      </Link>
+
+      <div className="flex min-h-screen flex-col items-center p-12 min-w-[80vw]">
         <div className="p-2 bg-gray-300 rounded-md">Article</div>
 
         <Suspense fallback={<Skeleton />}>

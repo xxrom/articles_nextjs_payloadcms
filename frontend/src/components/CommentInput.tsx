@@ -1,14 +1,14 @@
 "use client";
 
 import { CommentButton } from "./CommentButton";
-import { useCallback, useRef } from "react";
+import { memo, useCallback, useRef } from "react";
 import { addCommentAction } from "@/actions/input";
 
 export type CommentInputProps = {
   articleId: string;
 };
 
-export const CommentInput = ({ articleId }: CommentInputProps) => {
+export const CommentInput = memo(({ articleId }: CommentInputProps) => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const onAddMessage = useCallback((formData: FormData) => {
@@ -34,4 +34,4 @@ export const CommentInput = ({ articleId }: CommentInputProps) => {
       <CommentButton />
     </form>
   );
-};
+});

@@ -16,12 +16,15 @@ export const fetchComments = async (articleId: string): Promise<Comments> => {
     { addQueryPrefix: true }
   );
 
-  return await fetch(`${process.env.SERVER_URL}/api/commentsList/${queryStr}`, {
-    cache: "no-store",
-    next: {
-      tags: ["comments"],
-    },
-  }).then((res) =>
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/commentsList/${queryStr}`,
+    {
+      cache: "no-store",
+      next: {
+        tags: ["comments"],
+      },
+    }
+  ).then((res) =>
     sleep(1500).then(async () => {
       try {
         const data = await res?.json();
