@@ -11,6 +11,8 @@ export type Article = {
   description: string;
   buttonText: string;
   image: { url: string };
+
+  isButtonHidden?: boolean;
 };
 
 export type ArticleProps = Partial<Article> & Pick<Article, "id">;
@@ -59,9 +61,11 @@ export const Article = memo(async (props: ArticleProps) => {
 
         <p className="py-6 text-pretty break-all">{description}</p>
 
-        <Link href={`/article/${id}`} className="w-fit">
-          <Button>{buttonText}</Button>
-        </Link>
+        {!props.isButtonHidden && (
+          <Link href={`/article/${id}`} className="w-fit">
+            <Button>{buttonText}</Button>
+          </Link>
+        )}
       </CardContent>
     </Card>
   );

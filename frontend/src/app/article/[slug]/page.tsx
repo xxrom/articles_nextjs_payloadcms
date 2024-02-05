@@ -7,6 +7,7 @@ import { fetchComments } from "@/actions/comments";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 
 export type ArticleProps = {
   params: {
@@ -28,8 +29,11 @@ const ArticlePage = async ({ params }: ArticleProps) => {
         <Label className="p-2 bg-gray-100 rounded-md">{`Article ID: ${params.slug}`}</Label>
 
         <Suspense fallback={<SkeletonArticle />}>
-          <Article id={params.slug} {...articleData} />
+          <Article id={params.slug} isButtonHidden {...articleData} />
         </Suspense>
+
+        <Separator className="mt-4" />
+
         <Suspense fallback={<SkeletonArticle />}>
           <Comments articleId={params.slug} comments={comments} />
         </Suspense>
