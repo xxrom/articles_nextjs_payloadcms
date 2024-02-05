@@ -20,23 +20,25 @@ const ArticlePage = async ({ params }: ArticleProps) => {
   const comments = await fetchComments(params.slug);
 
   return (
-    <div className="flex min-h-screen flex-col items-center p-2 sm:p-4">
-      <Link href={`/`}>
-        <Button variant="outline">Back to Articles</Button>
-      </Link>
+    <div className="flex min-h-screen flex-col items-center p-4 sm:p-12">
+      <div className="flex flex-col justify-center items-center min-h-screen max-w-[1200px] p-2 sm:p-4">
+        <Link href={`/`}>
+          <Button variant="outline">Back to Articles</Button>
+        </Link>
 
-      <div className="flex min-h-screen flex-col items-center p-2 sm:p-12 min-w-[80vw]">
-        <Label className="p-2 px-4 text-md bg-gray-100 rounded-md">{`Article ID: ${params.slug}`}</Label>
+        <div className="flex min-h-screen flex-col items-center p-2 sm:p-12 ">
+          <Label className="p-2 px-4 text-md bg-gray-100 rounded-md">{`Article ID: ${params.slug}`}</Label>
 
-        <Suspense fallback={<SkeletonArticle />}>
-          <Article id={params.slug} isButtonHidden {...articleData} />
-        </Suspense>
+          <Suspense fallback={<SkeletonArticle />}>
+            <Article id={params.slug} isButtonHidden {...articleData} />
+          </Suspense>
 
-        <Separator className="mt-4" />
+          <Separator className="mt-4" />
 
-        <Suspense fallback={<SkeletonArticle />}>
-          <Comments articleId={params.slug} comments={comments} />
-        </Suspense>
+          <Suspense fallback={<SkeletonArticle />}>
+            <Comments articleId={params.slug} comments={comments} />
+          </Suspense>
+        </div>
       </div>
     </div>
   );

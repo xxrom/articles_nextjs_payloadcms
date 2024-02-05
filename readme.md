@@ -1,19 +1,37 @@
-# How to run
+## Features Implemented
 
-Open two terminals and run front and back parts of the project:
+-   **SSR for Articles and Each Article:** Enhances performance and SEO by pre-rendering pages on the server.
+-   **Optimized Image Loading:** Improves page load times and efficiency in displaying images.
+-   **Adding New Comments to Articles:** Allows users to engage with content by adding comments.
+-   **PayloadCMS Integration with Frontend:** Leverages PayloadCMS for easy content management and updates.
+-   **Responsive Design:** Ensures the website looks great on mobile, tablet, and desktop devices.
+-   **SEO Optimization for Images:** Enhances image discoverability through SEO best practices.
+-   **Pagination for Articles:** Implements article loading incrementally to improve user experience.
+-   **Styling with TailwindCSS and ui.shadcn:** Utilizes TailwindCSS for utility-first CSS and ui.shadcn for additional UI enhancements.
 
-BACK:
+## How to Run the Project
 
-1. open backend folder
-2. run `docker compose up`
-3. open payloadcms login page: `localhost:6066`
+### Prerequisites
 
-FRONT:
+Ensure you have Docker and Yarn installed on your machine to run the project.
 
-1. open frontend folder
-2. run `yarn`
-3. run `yarn dev`
-4. open fronend page: `localhost:6060`
+### Backend Setup
+
+1. **Start the Backend Server:**
+    - Navigate to the `backend` folder.
+    - Run `docker compose up` to start the PayloadCMS backend.
+    - Once the server is up, access the PayloadCMS admin interface at `http://localhost:6066`.
+
+### Frontend Setup
+
+1. **Prepare the Frontend Environment:**
+
+    - Open a new terminal and navigate to the `frontend` folder.
+    - Run `yarn` to install the dependencies.
+
+2. **Launch the Frontend Development Server:**
+    - Run `yarn dev` to start the Next.js development server.
+    - Access the frontend application at `http://localhost:6060`.
 
 ---
 
