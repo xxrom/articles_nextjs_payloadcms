@@ -46,7 +46,9 @@ export const Articles = memo(({ articles }: ArticlesProps) => {
   return (
     <div className="flex flex-col justify-center items-center max-w-[1200px]">
       <div className='flex flex-col justify-center"'>
-        <Label className="w-fit p-2 bg-gray-300 rounded-md">Articles</Label>
+        <Label className="w-fit p-2 px-4 text-md bg-gray-300 rounded-md">
+          Articles
+        </Label>
       </div>
 
       {allArticles?.map((article) => (

@@ -46,7 +46,7 @@ export const Article = memo(async (props: ArticleProps) => {
               alt={image?.alt || "image"}
               sizes="(max-width: 500px) 80vw, (max-width: 768px) 30vw, (max-width: 1200px) 40vw, 20vw"
               quality={60}
-              loading="eager"
+              priority={true}
               fill
               style={{
                 objectFit: "cover",

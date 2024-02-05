@@ -26,7 +26,7 @@ const ArticlePage = async ({ params }: ArticleProps) => {
       </Link>
 
       <div className="flex min-h-screen flex-col items-center p-2 sm:p-12 min-w-[80vw]">
-        <Label className="p-2 bg-gray-100 rounded-md">{`Article ID: ${params.slug}`}</Label>
+        <Label className="p-2 px-4 text-md bg-gray-100 rounded-md">{`Article ID: ${params.slug}`}</Label>
 
         <Suspense fallback={<SkeletonArticle />}>
           <Article id={params.slug} isButtonHidden {...articleData} />
