@@ -9,6 +9,11 @@
 -   **Pagination for Articles:** Implements article loading incrementally to improve user experience.
 -   **Styling with TailwindCSS and ui.shadcn:** Utilizes TailwindCSS for utility-first CSS and ui.shadcn for additional UI enhancements.
 
+## Online demo
+
+[Next.js frontend](http://178.128.195.181:6060/)
+[PayloadCMS backend](http://178.128.195.181:6066/)
+
 ## How to Run the Project
 
 ### Prerequisites
