@@ -8,4 +8,4 @@ export const fetchArticle = async (id: string) =>
     next: {
       tags: ["article"],
     },
-  }).then((res) => sleep(1000 + Math.random() * 500).then(() => res.json()));
+  }).then((res) => sleep(500 + Math.random() * 500).then(() => res.json()));

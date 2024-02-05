@@ -17,7 +17,7 @@ export const fetchArticles = async (
       },
     }
   ).then((res) =>
-    sleep().then(async () => {
+    sleep(500).then(async () => {
       const data = await res.json();
 
       return data?.docs;

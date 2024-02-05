@@ -3,6 +3,8 @@
 import { CommentButton } from "./CommentButton";
 import { memo, useCallback, useRef } from "react";
 import { addCommentAction } from "@/actions/input";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 
 export type CommentInputProps = {
   articleId: string;
@@ -21,17 +23,21 @@ export const CommentInput = memo(({ articleId }: CommentInputProps) => {
     <form
       ref={formRef}
       action={onAddMessage}
-      className="flex flex-col mt-4 p-2 bg-gray-500 rounded-md"
+      className="flex flex-col mt-4 p-4 bg-gray-300 rounded-md"
     >
-      <label htmlFor="content">New Comment:</label>
-      <input
-        type="text"
-        id="content"
-        required
-        name="content"
-        className="my-2 rounded-sm"
-      />
-      <CommentButton />
+      <Label htmlFor="content">New Comment:</Label>
+
+      <div className="flex mt-4">
+        <Input
+          id="content"
+          required
+          name="content"
+          placeholder="Type your message here..."
+          className="rounded-md mr-2"
+        />
+
+        <CommentButton />
+      </div>
     </form>
   );
 });

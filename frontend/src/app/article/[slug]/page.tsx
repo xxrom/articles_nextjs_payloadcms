@@ -1,10 +1,12 @@
 import { Article } from "@/components/Article";
-import { Skeleton } from "@/components/Skeleton";
+import { SkeletonArticle } from "@/components/SkeletonArticle";
 import { Comments } from "@/components/Comments";
 import { Suspense } from "react";
 import { fetchArticle } from "@/actions/article";
 import { fetchComments } from "@/actions/comments";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 
 export type ArticleProps = {
   params: {
@@ -17,18 +19,18 @@ const ArticlePage = async ({ params }: ArticleProps) => {
   const comments = await fetchComments(params.slug);
 
   return (
-    <div className="flex min-h-screen flex-col items-center p-12">
-      <Link href={`/`} className="text-white">
-        Back to Articles
+    <div className="flex min-h-screen flex-col items-center p-2 sm:p-4">
+      <Link href={`/`}>
+        <Button variant="outline">Back to Articles</Button>
       </Link>
 
-      <div className="flex min-h-screen flex-col items-center p-12 min-w-[80vw]">
-        <div className="p-2 bg-gray-300 rounded-md">Article</div>
+      <div className="flex min-h-screen flex-col items-center p-2 sm:p-12 min-w-[80vw]">
+        <Label className="p-2 bg-gray-100 rounded-md">{`Article ID: ${params.slug}`}</Label>
 
-        <Suspense fallback={<Skeleton />}>
+        <Suspense fallback={<SkeletonArticle />}>
           <Article id={params.slug} {...articleData} />
         </Suspense>
-        <Suspense fallback={<Skeleton />}>
+        <Suspense fallback={<SkeletonArticle />}>
           <Comments articleId={params.slug} comments={comments} />
         </Suspense>
       </div>

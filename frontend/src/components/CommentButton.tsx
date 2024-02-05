@@ -2,18 +2,19 @@
 
 import { memo } from "react";
 import { useFormStatus } from "react-dom";
+import { Button } from "./ui/button";
 
 export const CommentButton = memo(() => {
   const { pending } = useFormStatus();
 
   return (
-    <button
+    <Button
       type="submit"
+      className="max-w-20"
       disabled={pending}
-      className={pending ? "bg-gray-800" : "bg-gray-200"}
       aria-disabled={pending}
     >
       Add
-    </button>
+    </Button>
   );
 });

@@ -2,14 +2,13 @@ import express from "express";
 import payload from "payload";
 import cors from "cors";
 import { v4 as uuidv4 } from "uuid";
-import Comments from "./collections/Comments";
 
 require("dotenv").config();
 const app = express();
 
 const corsOptions = {
   origin: true,
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
@@ -22,8 +21,6 @@ app.get("/", (_, res) => {
 
 // Custom route to append a comment
 app.post("/api/commentsList/append", async (req, res) => {
-  console.log("append", req.body);
-
   const { articleId, content }: { articleId: string; content: string } =
     req.body;
   const newComment = { id: uuidv4(), content };
@@ -37,13 +34,13 @@ app.post("/api/commentsList/append", async (req, res) => {
           equals: articleId,
         },
       },
-      depth: 0, // Adjust as necessary
+      depth: 0,
     });
 
     let currentCommentsList: any = existingData?.docs[0];
 
     if (typeof currentCommentsList?.id === "undefined") {
-      // Create new commentsList
+      // Create new commentsList if needed
       currentCommentsList = await payload.create({
         collection: "commentsList",
         data: {
@@ -56,9 +53,6 @@ app.post("/api/commentsList/append", async (req, res) => {
     let id = currentCommentsList?.id;
     let comments = currentCommentsList?.comments || [];
 
-    console.log("existingComments", currentCommentsList, comments);
-    console.log("id", currentCommentsList.id, id);
-
     // Append the new comment
     const updatedCommentsList = await payload.update({
       collection: "commentsList",
@@ -69,8 +63,6 @@ app.post("/api/commentsList/append", async (req, res) => {
       },
     });
 
-    console.log("udpated", updatedCommentsList);
-
     res.status(200).json(updatedCommentsList);
   } catch (error) {
     console.error("Error appending comment:", error);
@@ -79,7 +71,6 @@ app.post("/api/commentsList/append", async (req, res) => {
 });
 
 const start = async () => {
-  // Initialize Payload
   await payload.init({
     secret: process.env.PAYLOAD_SECRET,
     express: app,
@@ -87,8 +78,6 @@ const start = async () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`);
     },
   });
-
-  // Add your own express routes here
 
   app.listen(3000);
 };

@@ -2,9 +2,11 @@
 
 import { Article } from "./Article";
 import { Suspense, memo, useCallback, useState } from "react";
-import { Skeleton } from "./Skeleton";
+import { SkeletonArticle } from "./SkeletonArticle";
 import { sleep } from "@/utils/sleep";
 import { REQUEST_LIMIT } from "@/utils/constants";
+import { Button } from "./ui/button";
+import { Label } from "./ui/label";
 
 export type Articles = Array<Article>;
 export type ArticlesProps = {
@@ -44,21 +46,20 @@ export const Articles = memo(({ articles }: ArticlesProps) => {
   }, [page]);
 
   return (
-    <div className="min-w-[50vw] max-w-[1200px]">
+    <div className="flex flex-col justify-center items-center max-w-[1200px]">
       <div className='flex flex-col justify-center"'>
-        <span className="w-fit p-2 bg-gray-300 rounded-md">Articles</span>
+        <Label className="w-fit p-2 bg-gray-300 rounded-md">Articles</Label>
       </div>
-      <div>{`Pages: ${page}`}</div>
 
       {allArticles?.map((article) => (
-        <Suspense key={article.id} fallback={<Skeleton />}>
+        <Suspense key={article.id} fallback={<SkeletonArticle />}>
           <Article key={article.id} {...article} />
         </Suspense>
       ))}
 
-      <button onClick={onLoadMore} className={"bg-gray-300"}>
+      <Button onClick={onLoadMore} variant="outline" className="mt-6 max-w-24">
         {isLoading ? "Loading..." : "Load more"}
-      </button>
+      </Button>
     </div>
   );
 });

@@ -25,7 +25,7 @@ export const fetchComments = async (articleId: string): Promise<Comments> => {
       },
     }
   ).then((res) =>
-    sleep(1500).then(async () => {
+    sleep(500).then(async () => {
       try {
         const data = await res?.json();
 

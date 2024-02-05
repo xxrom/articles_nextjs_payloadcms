@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { fetchArticle } from "@/actions/article";
 import { memo } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
 
 export type Article = {
   id: string;
@@ -24,35 +26,43 @@ export const Article = memo(async (props: ArticleProps) => {
   const isImageExists = typeof image?.url !== "undefined";
 
   return (
-    <div className="flex flex-col w-full p-2 my-4 bg-gray-50 rounded-md">
-      <div>{id}</div>
-      <div>{title}</div>
-      {isImageExists && (
-        <div
-          style={{
-            position: "relative",
-            width: "auto",
-            height: "300px",
-            maxWidth: "500px",
-          }}
-        >
-          <Image
-            src={`${process.env.NEXT_PUBLIC_SERVER_URL}${image?.url}`}
-            alt={image?.alt || "image"}
-            sizes="(max-width: 500px) 50vw, (max-width: 768px) 30vw, (max-width: 1200px) 50vw, 20vw"
-            quality={60}
-            loading="lazy"
-            fill
+    <Card className="flex flex-wrap sm:flex-nowrap bg-gray-300 mt-4 w-full">
+      <CardHeader className="flex flex-1 basis-1/2 p-4 sm:p-6">
+        {isImageExists && (
+          <div
+            className="rounded-md overflow-hidden"
             style={{
-              objectFit: "cover",
+              position: "relative",
+              width: "auto",
+              height: "300px",
+              maxWidth: "500px",
+              minWidth: "210px",
             }}
-          />
-        </div>
-      )}
+          >
+            <Image
+              src={`${process.env.NEXT_PUBLIC_SERVER_URL}${image?.url}`}
+              alt={image?.alt || "image"}
+              sizes="(max-width: 500px) 50vw, (max-width: 768px) 30vw, (max-width: 1200px) 50vw, 20vw"
+              quality={60}
+              loading="lazy"
+              fill
+              style={{
+                objectFit: "cover",
+              }}
+            />
+          </div>
+        )}
+      </CardHeader>
 
-      <div>{description}</div>
+      <CardContent className="flex flex-col flex-1 basis-1/2 p-4 sm:p-6">
+        <CardTitle className="break-all">{title}</CardTitle>
 
-      <Link href={`/article/${id}`}>{buttonText}</Link>
-    </div>
+        <p className="py-6 text-pretty break-all">{description}</p>
+
+        <Link href={`/article/${id}`} className="w-fit">
+          <Button>{buttonText}</Button>
+        </Link>
+      </CardContent>
+    </Card>
   );
 });
