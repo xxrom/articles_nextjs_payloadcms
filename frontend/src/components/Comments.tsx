@@ -23,7 +23,7 @@ export const Comments = memo(async ({ articleId, comments }: CommentsProps) => (
 
     {comments?.map((comment, index) => (
       <div key={comment.id} className="p-4 mt-4 bg-gray-200 rounded-md">
-        <Label className="text-gray-500">{`Comment №${index + 1}`}</Label>
+        <Label className="text-gray-600">{`Comment №${index + 1}`}</Label>
         <div>{comment.content}</div>
       </div>
     ))}
