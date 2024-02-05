@@ -12,6 +12,7 @@
 ## Online demo
 
 [Next.js frontend](http://178.128.195.181:6060/)
+
 [PayloadCMS backend](http://178.128.195.181:6066/)
 
 ## How to Run the Project
