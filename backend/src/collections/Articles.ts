@@ -51,6 +51,7 @@ const Articles: CollectionConfig = {
     {
       name: "image",
       type: "upload",
+      required: true,
       relationTo: "media",
     },
   ],
